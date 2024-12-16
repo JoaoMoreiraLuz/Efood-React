@@ -1,4 +1,4 @@
-import { DivDarker, Imagem, InfoTitle, Title } from './style'
+import { Imagem, InfoTitle, Title } from './style'
 
 type Props = {
   title: string
@@ -8,12 +8,12 @@ type Props = {
 
 const Banner = ({ image, title, infos }: Props) => (
   <Imagem style={{ backgroundImage: `url(${image})` }}>
-    <DivDarker>
+    <div className="container">
       {infos.map((info) => (
         <InfoTitle key={info}>{info}</InfoTitle>
       ))}
       <Title>{title}</Title>
-    </DivDarker>
+    </div>
   </Imagem>
 )
 
