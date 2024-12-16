@@ -29,13 +29,15 @@ const Header = ({ homePage, restaurantPages }: Props) => (
       </>
     ) : (
       <>
-        <RestaurantDiv>
-          <RestaurantTitle>Restaurantes</RestaurantTitle>
-          <Link to="/">
-            <img src={logo} alt="EFOOD" />
-          </Link>
-          <RestaurantTitle>0 produto(s) no carrinho</RestaurantTitle>
-        </RestaurantDiv>
+        <div className="container">
+          <RestaurantDiv>
+            <RestaurantTitle>Restaurantes</RestaurantTitle>
+            <Link to="/">
+              <img src={logo} alt="EFOOD" />
+            </Link>
+            <RestaurantTitle>0 produto(s) no carrinho</RestaurantTitle>
+          </RestaurantDiv>
+        </div>
         <div>
           {restaurantPages.map((restaurantpage) => (
             <Banner

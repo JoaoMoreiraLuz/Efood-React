@@ -30,7 +30,7 @@ export const RestaurantDiv = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   img {
     margin-top: 64px;
