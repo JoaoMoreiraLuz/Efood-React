@@ -1,17 +1,15 @@
 import { Imagem, InfoTitle, Title } from './style'
 
 type Props = {
-  title: string
-  image: string
-  infos: string[]
+  title?: string
+  image?: string
+  info?: string
 }
 
-const Banner = ({ image, title, infos }: Props) => (
+const Banner = ({ image, title, info }: Props) => (
   <Imagem style={{ backgroundImage: `url(${image})` }}>
     <div className="container">
-      {infos.map((info) => (
-        <InfoTitle key={info}>{info}</InfoTitle>
-      ))}
+      <InfoTitle>{info}</InfoTitle>
       <Title>{title}</Title>
     </div>
   </Imagem>

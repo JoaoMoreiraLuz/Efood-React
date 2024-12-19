@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Vector from '../../assets/images/Vector.png'
+import { Cores } from '../../styles'
 
 export const HeaderImage = styled.header`
   background-image: ${Vector};
@@ -30,7 +31,7 @@ export const RestaurantDiv = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   img {
     margin-top: 64px;
@@ -44,4 +45,6 @@ export const RestaurantTitle = styled.h2`
   font-weight: 900;
   margin-top: 82px;
   margin-bottom: 83px;
+  text-decoration: none;
+  color: ${Cores.vermelho};
 `

@@ -1,70 +1,26 @@
+import { useParams } from 'react-router-dom'
 import Header from '../../components/Header'
 import MenuList from '../../components/MenuList'
-import Plate from '../../models/Plate'
+import { useEffect, useState } from 'react'
+import { Restaurant } from '../Home'
 
-import Pizza from '../../assets/images/pizza.png'
-import Pasta from '../../assets/images/pasta.png'
-import RestaurantPage from '../../models/RestaurantPage'
+const Menu = () => {
+  const { id } = useParams()
 
-const PlateMenu: Plate[] = [
-  {
-    id: 1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: Pizza
-  },
-  {
-    id: 2,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: Pizza
-  },
-  {
-    id: 3,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: Pizza
-  },
-  {
-    id: 4,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: Pizza
-  },
-  {
-    id: 5,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: Pizza
-  },
-  {
-    id: 6,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: Pizza
-  }
-]
+  const [restaurant, setRestaurant] = useState<Restaurant>()
 
-const BannerPage: RestaurantPage[] = [
-  {
-    id: 1,
-    title: 'La Dolce Vita Trattoria',
-    image: Pasta,
-    infos: ['Italiana']
-  }
-]
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setRestaurant(res))
+  }, [id])
 
-const Menu = () => (
-  <>
-    <Header homePage={false} restaurantPages={BannerPage} />
-    <MenuList plates={PlateMenu} />
-  </>
-)
+  return (
+    <>
+      <Header homePage={false} restaurantBanner={restaurant} />
+      <MenuList pratos={restaurant?.cardapio} />
+    </>
+  )
+}
 
 export default Menu

@@ -8,15 +8,15 @@ import {
 import headerImage from '../../assets/images/Vector.png'
 import logo from '../../assets/images/logo.svg'
 import Banner from '../Banner'
-import RestaurantPage from '../../models/RestaurantPage'
 import { Link } from 'react-router-dom'
+import { Restaurant } from '../../Pages/Home'
 
 type Props = {
   homePage: boolean
-  restaurantPages: RestaurantPage[]
+  restaurantBanner?: Restaurant
 }
 
-const Header = ({ homePage, restaurantPages }: Props) => (
+const Header = ({ homePage, restaurantBanner }: Props) => (
   <HeaderImage style={{ backgroundImage: `url(${headerImage})` }}>
     {homePage ? (
       <>
@@ -31,7 +31,9 @@ const Header = ({ homePage, restaurantPages }: Props) => (
       <>
         <div className="container">
           <RestaurantDiv>
-            <RestaurantTitle>Restaurantes</RestaurantTitle>
+            <Link to="/">
+              <RestaurantTitle>Restaurantes</RestaurantTitle>
+            </Link>
             <Link to="/">
               <img src={logo} alt="EFOOD" />
             </Link>
@@ -39,14 +41,11 @@ const Header = ({ homePage, restaurantPages }: Props) => (
           </RestaurantDiv>
         </div>
         <div>
-          {restaurantPages.map((restaurantpage) => (
-            <Banner
-              key={restaurantpage.id}
-              title={restaurantpage.title}
-              image={restaurantpage.image}
-              infos={restaurantpage.infos}
-            />
-          ))}
+          <Banner
+            title={restaurantBanner?.titulo}
+            image={restaurantBanner?.capa}
+            info={restaurantBanner?.tipo}
+          />
         </div>
       </>
     )}
