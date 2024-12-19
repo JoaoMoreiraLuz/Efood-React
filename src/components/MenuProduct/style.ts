@@ -7,6 +7,15 @@ export const CardProduct = styled(Card)`
   padding: 8px;
   background-color: ${Cores.vermelho};
   color: ${Cores.branco};
+  border-radius: 6px;
+  cursor: pointer;
+
+  img {
+    object-fit: cover;
+    width: 304px;
+    height: 167px;
+    border-radius: 6px;
+  }
 `
 
 export const AddCarrinho = styled(TagContainer)`

@@ -9,34 +9,54 @@ type Props = {
   title: string
   description: string
   image: string
-  rating: string
-  infos: string[]
+  rating: number
+  info: string
+  destaque: boolean
+  id: number
 }
 
-const Product = ({ title, description, image, rating, infos }: Props) => (
-  <Card>
-    <div>
-      <ProductImage src={image} alt={title} />
-    </div>
-    <Infos>
-      {infos.map((info) => (
-        <Tag key={info}>{info}</Tag>
-      ))}
-    </Infos>
-    <TitleDiv>
-      <ProductTitle>{title}</ProductTitle>
-      <Rating>
-        <ProductTitle>{rating}</ProductTitle>
-        <img src={Star} alt="rating" />
-      </Rating>
-    </TitleDiv>
-    <div>
-      <Description>{description}</Description>
-    </div>
-    <Link to="/menu">
-      <Tag>Saiba mais</Tag>
+const Product = ({
+  title,
+  description,
+  image,
+  rating,
+  info,
+  destaque,
+  id
+}: Props) => {
+  const getDescription = (description: string) => {
+    if (description.length > 272) {
+      return description.slice(0, 269) + '...'
+    }
+    return description
+  }
+
+  return (
+    <Link to={`/menu/${id}`}>
+      <Card>
+        <div>
+          <ProductImage src={image} alt={title} />
+        </div>
+        <Infos>
+          {destaque === true && <Tag>Destaque</Tag>}
+          <Tag>{info}</Tag>
+        </Infos>
+        <TitleDiv>
+          <ProductTitle>{title}</ProductTitle>
+          <Rating>
+            <ProductTitle>{rating}</ProductTitle>
+            <img src={Star} alt="rating" />
+          </Rating>
+        </TitleDiv>
+        <div>
+          <Description>{getDescription(description)}</Description>
+        </div>
+        <Link to="/menu">
+          <Tag>Saiba mais</Tag>
+        </Link>
+      </Card>
     </Link>
-  </Card>
-)
+  )
+}
 
 export default Product

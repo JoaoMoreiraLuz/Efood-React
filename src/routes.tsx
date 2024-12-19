@@ -5,7 +5,7 @@ import Menu from './Pages/Menu'
 const Rotas = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/menu" element={<Menu />} />
+    <Route path="/menu/:id" element={<Menu />} />
   </Routes>
 )
 export default Rotas

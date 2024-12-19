@@ -1,16 +1,23 @@
 import styled from 'styled-components'
+import { Cores } from '../../styles'
 
 export const Card = styled.div`
   max-width: 500px;
-  max-height: 400px;
   background-color: #ffffff;
   border: 1px solid #e66767;
   border-top: none;
   position: relative;
+  padding-bottom: 8px;
+  text-decoration: none;
+  color: ${Cores.vermelho};
 `
 
 export const ProductImage = styled.img`
   width: 100%;
+  width: 472px;
+  height: 217px;
+
+  object-fit: cover;
 `
 
 export const TitleDiv = styled.div`

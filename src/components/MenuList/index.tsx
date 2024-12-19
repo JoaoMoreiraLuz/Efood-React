@@ -1,27 +1,102 @@
-import Plate from '../../models/Plate'
+import { useState } from 'react'
+import { MenuItem } from '../../Pages/Home'
 import { ProductsContainer } from '../../styles'
 import MenuProduct from '../MenuProduct'
-import { List } from './style'
+import { AddCarrinho, Close, List, Modal, ModalContent } from './style'
+import close from '../../assets/images/close.png'
 
-export type Props = {
-  plates: Plate[]
+type Props = {
+  pratos?: MenuItem[]
 }
 
-const MenuList = ({ plates }: Props) => (
-  <ProductsContainer>
-    <div className="container">
-      <List>
-        {plates.map((plate) => (
-          <MenuProduct
-            key={plate.id}
-            title={plate.title}
-            description={plate.description}
-            image={plate.image}
+interface ModalState extends MenuItem {
+  isVisible: boolean
+}
+
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
+const MenuList = ({ pratos }: Props) => {
+  const [modal, setModal] = useState<ModalState>({
+    isVisible: false,
+    descricao: '',
+    foto: '',
+    id: 0,
+    nome: '',
+    porcao: '',
+    preco: 0
+  })
+
+  const closeModal = () => {
+    setModal({
+      isVisible: false,
+      descricao: '',
+      foto: '',
+      id: 0,
+      nome: '',
+      porcao: '',
+      preco: 0
+    })
+  }
+  return (
+    <>
+      <ProductsContainer>
+        <div className="container">
+          <List>
+            {pratos?.map((pratos) => (
+              <li
+                key={pratos.id}
+                onClick={() => {
+                  setModal({
+                    descricao: pratos.descricao,
+                    foto: pratos.foto,
+                    id: pratos.id,
+                    isVisible: true,
+                    nome: pratos.nome,
+                    porcao: pratos.porcao,
+                    preco: pratos.preco
+                  })
+                }}
+              >
+                <MenuProduct
+                  id={pratos.id}
+                  title={pratos.nome}
+                  description={pratos.descricao}
+                  image={pratos.foto}
+                />
+              </li>
+            ))}
+          </List>
+        </div>
+      </ProductsContainer>
+      <Modal className={modal.isVisible ? 'visible' : ' '}>
+        <ModalContent className="container">
+          <Close
+            src={close}
+            onClick={() => {
+              closeModal()
+            }}
           />
-        ))}
-      </List>
-    </div>
-  </ProductsContainer>
-)
+          <div>
+            <img src={modal.foto} alt={modal.nome} />
+          </div>
+          <div>
+            <h1>{modal.nome}</h1>
+            <p>{modal.descricao}</p>
+            <p>{modal.porcao}</p>
+            <AddCarrinho>
+              Adicionar ao carrinho - {formataPreco(modal.preco)}
+            </AddCarrinho>
+          </div>
+        </ModalContent>
+        <div onClick={() => closeModal()} className="overlay"></div>
+      </Modal>
+    </>
+  )
+}
 
 export default MenuList
