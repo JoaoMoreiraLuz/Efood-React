@@ -4,6 +4,8 @@ import { ProductsContainer } from '../../styles'
 import MenuProduct from '../MenuProduct'
 import { AddCarrinho, Close, List, Modal, ModalContent } from './style'
 import close from '../../assets/images/close.png'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
   pratos?: MenuItem[]
@@ -21,6 +23,8 @@ export const formataPreco = (preco = 0) => {
 }
 
 const MenuList = ({ pratos }: Props) => {
+  const dispatch = useDispatch()
+
   const [modal, setModal] = useState<ModalState>({
     isVisible: false,
     descricao: '',
@@ -41,6 +45,11 @@ const MenuList = ({ pratos }: Props) => {
       porcao: '',
       preco: 0
     })
+  }
+
+  const addToCart = () => {
+    dispatch(add(modal))
+    dispatch(open())
   }
   return (
     <>
@@ -88,7 +97,7 @@ const MenuList = ({ pratos }: Props) => {
             <h1>{modal.nome}</h1>
             <p>{modal.descricao}</p>
             <p>{modal.porcao}</p>
-            <AddCarrinho>
+            <AddCarrinho onClick={addToCart}>
               Adicionar ao carrinho - {formataPreco(modal.preco)}
             </AddCarrinho>
           </div>

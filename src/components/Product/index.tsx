@@ -51,7 +51,7 @@ const Product = ({
         <div>
           <Description>{getDescription(description)}</Description>
         </div>
-        <Link to="/menu">
+        <Link to={`/menu/${id}`}>
           <Tag>Saiba mais</Tag>
         </Link>
       </Card>
