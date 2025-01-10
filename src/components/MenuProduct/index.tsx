@@ -1,5 +1,5 @@
 import { Description, ProductTitle } from '../../styles'
-import { AddCarrinho, CardProduct } from './style'
+import * as S from './style'
 
 type Props = {
   title: string
@@ -17,7 +17,7 @@ const MenuProduct = ({ title, image, description }: Props) => {
   }
 
   return (
-    <CardProduct>
+    <S.CardProduct>
       <div>
         <img src={image} alt={title} />
       </div>
@@ -27,8 +27,8 @@ const MenuProduct = ({ title, image, description }: Props) => {
       <div>
         <Description>{getDescription(description)}</Description>
       </div>
-      <AddCarrinho>Saiba mais</AddCarrinho>
-    </CardProduct>
+      <S.InfoButton>Saiba mais</S.InfoButton>
+    </S.CardProduct>
   )
 }
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const Card = styled.div`
   max-width: 500px;
@@ -9,12 +9,11 @@ export const Card = styled.div`
   position: relative;
   padding-bottom: 8px;
   text-decoration: none;
-  color: ${Cores.vermelho};
+  color: ${colors.red};
 `
 
 export const ProductImage = styled.img`
   width: 100%;
-  width: 472px;
   height: 217px;
 
   object-fit: cover;

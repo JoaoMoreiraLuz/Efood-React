@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
-import { Cores } from '../../styles'
+import { colors } from '../../styles'
 
-export const Imagem = styled.div`
+export const Image = styled.div`
   width: 100%;
   height: 280px;
   display: block;
@@ -29,12 +29,12 @@ export const Imagem = styled.div`
 export const InfoTitle = styled.h2`
   font-size: 32px;
   font-weight: 100;
-  color: ${Cores.branco};
+  color: ${colors.white};
   padding-top: 25px;
 `
 export const Title = styled.h1`
   font-size: 32px;
   font-weight: 900;
-  color: ${Cores.branco};
+  color: ${colors.white};
   padding-top: 156px;
 `

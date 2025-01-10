@@ -1,9 +1,10 @@
-import { Card, Infos, ProductImage, Rating, TitleDiv } from './style'
+import { Link } from 'react-router-dom'
 
-import Star from '../../assets/images/estrela.png'
+import * as S from './style'
 import Tag from '../Tag'
 import { Description, ProductTitle } from '../../styles'
-import { Link } from 'react-router-dom'
+
+import Star from '../../assets/images/estrela.png'
 
 type Props = {
   title: string
@@ -33,28 +34,28 @@ const Product = ({
 
   return (
     <Link to={`/menu/${id}`}>
-      <Card>
+      <S.Card>
         <div>
-          <ProductImage src={image} alt={title} />
+          <S.ProductImage src={image} alt={title} />
         </div>
-        <Infos>
+        <S.Infos>
           {destaque === true && <Tag>Destaque</Tag>}
           <Tag>{info}</Tag>
-        </Infos>
-        <TitleDiv>
+        </S.Infos>
+        <S.TitleDiv>
           <ProductTitle>{title}</ProductTitle>
-          <Rating>
+          <S.Rating>
             <ProductTitle>{rating}</ProductTitle>
             <img src={Star} alt="rating" />
-          </Rating>
-        </TitleDiv>
+          </S.Rating>
+        </S.TitleDiv>
         <div>
           <Description>{getDescription(description)}</Description>
         </div>
         <Link to={`/menu/${id}`}>
           <Tag>Saiba mais</Tag>
         </Link>
-      </Card>
+      </S.Card>
     </Link>
   )
 }

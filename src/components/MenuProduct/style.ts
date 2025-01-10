@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import { Card } from '../Product/style'
-import { Cores } from '../../styles'
+import { colors } from '../../styles'
 import { TagContainer } from '../Tag/style'
 
 export const CardProduct = styled(Card)`
   padding: 8px;
-  background-color: ${Cores.vermelho};
-  color: ${Cores.branco};
+  background-color: ${colors.red};
+  color: ${colors.white};
   border-radius: 6px;
   cursor: pointer;
 
@@ -18,10 +18,12 @@ export const CardProduct = styled(Card)`
   }
 `
 
-export const AddCarrinho = styled(TagContainer)`
+export const InfoButton = styled(TagContainer)`
   width: 100%;
   text-align: center;
-  color: ${Cores.vermelho};
-  background-color: ${Cores.branco};
+  color: ${colors.red};
+  background-color: ${colors.white};
   margin-left: 0;
+  cursor: pointer;
+  margin-bottom: 8px;
 `

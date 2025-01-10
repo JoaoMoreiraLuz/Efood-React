@@ -1,14 +1,21 @@
 import { useParams } from 'react-router-dom'
-import Header from '../../components/Header'
+
 import { useGetMenuItemQuery } from '../../services/api'
+
+import Header from '../../components/Header'
 import MenuList from '../../components/MenuList'
+import Loader from '../../components/Loader'
+
+type MenuParams = {
+  id: string
+}
 
 const Menu = () => {
-  const { id } = useParams()
-  const { data: Menu } = useGetMenuItemQuery(id!)
+  const { id } = useParams() as MenuParams
+  const { data: Menu } = useGetMenuItemQuery(id)
 
   if (!Menu) {
-    return <h3>Carregando...</h3>
+    return <Loader />
   }
   return (
     <>

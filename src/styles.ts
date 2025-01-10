@@ -1,9 +1,14 @@
 import styled, { createGlobalStyle } from 'styled-components'
 
-export const Cores = {
-  vermelho: '#E66767',
-  branco: '#FFF8F2',
+export const colors = {
+  red: '#E66767',
+  white: '#FFF8F2',
   offWhite: '#FFEBD9'
+}
+
+export const breakpoints = {
+  desktop: '1024px',
+  tablet: '768px'
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -17,15 +22,20 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: ${Cores.branco};
-        color: ${Cores.vermelho};
+        background-color: ${colors.white};
+        color: ${colors.red};
     }
 
     .container {
         max-width: 1024px;
         width: 100%;
         margin: 0 auto;
+        
+        @media (max-width: ${breakpoints.desktop}) {
+          max-width: 85%;
+        }
     }
+
 `
 
 export const ProductTitle = styled.h2`
