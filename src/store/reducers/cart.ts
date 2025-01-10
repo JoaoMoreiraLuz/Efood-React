@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { MenuItem } from '../../Pages/Home'
 
 type CartState = {
   items: MenuItem[]
   isOpen: boolean
+  isBuying: boolean
 }
 
 const initialState: CartState = {
   items: [],
-  isOpen: false
+  isOpen: false,
+  isBuying: true
 }
 
 const cartSlice = createSlice({
@@ -29,12 +30,23 @@ const cartSlice = createSlice({
     },
     open: (state) => {
       state.isOpen = true
+      state.isBuying = true
     },
     close: (state) => {
       state.isOpen = false
+    },
+    clear: (state) => {
+      state.items = []
+    },
+    isBuyingFalse: (state) => {
+      state.isBuying = false
+    },
+    isBuyingTrue: (state) => {
+      state.isBuying = true
     }
   }
 })
 
-export const { add, close, open, remove } = cartSlice.actions
+export const { add, close, open, remove, clear, isBuyingFalse, isBuyingTrue } =
+  cartSlice.actions
 export default cartSlice.reducer

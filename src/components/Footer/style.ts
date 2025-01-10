@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const FooterContainer = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${Cores.offWhite};
+  background-color: ${colors.offWhite};
 
   img {
     max-width: 125px;

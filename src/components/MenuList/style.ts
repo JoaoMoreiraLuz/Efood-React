@@ -1,12 +1,20 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
-import { TagContainer } from '../Tag/style'
+import { breakpoints, colors } from '../../styles'
 
 export const List = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 32px;
   row-gap: 32px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
 `
 
 export const Modal = styled.div`
@@ -22,6 +30,10 @@ export const Modal = styled.div`
 
   &.visible {
     display: flex;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      display: block;
+    }
   }
 
   .overlay {
@@ -41,8 +53,14 @@ export const ModalContent = styled.div`
   position: relative;
   z-index: 1;
   display: flex;
-  background-color: ${Cores.vermelho};
-  color: ${Cores.branco};
+  background-color: ${colors.red};
+  color: ${colors.white};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: auto;
+    height: auto;
+    margin: 30px;
+  }
 
   div {
     img {
@@ -50,6 +68,12 @@ export const ModalContent = styled.div`
       width: 280px;
       height: 280px;
       margin-right: 24px;
+
+      @media (max-width: ${breakpoints.tablet}) {
+        width: 250px;
+        height: 250px;
+        border-radius: 8px;
+      }
     }
   }
 
@@ -64,12 +88,10 @@ export const ModalContent = styled.div`
     font-size: 14px;
     font-weight: 400;
   }
-`
 
-export const AddCarrinho = styled(TagContainer)`
-  background-color: ${Cores.branco};
-  color: ${Cores.vermelho};
-  margin-left: 0;
+  @media (max-width: ${breakpoints.tablet}) {
+    display: block;
+  }
 `
 
 export const Close = styled.img`

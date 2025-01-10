@@ -1,32 +1,14 @@
-import Header from '../../components/Header'
-import RestaurantList from '../../components/RestaurantList'
 import { useGetRestaurantsQuery } from '../../services/api'
 
-export interface MenuItem {
-  foto: string
-  preco: number
-  id: number
-  nome: string
-  descricao: string
-  porcao: string
-}
-
-export type Restaurant = {
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: number
-  descricao: string
-  capa: string
-  cardapio: MenuItem[]
-}
+import Header from '../../components/Header'
+import Loader from '../../components/Loader'
+import RestaurantList from '../../components/RestaurantList'
 
 const Home = () => {
   const { data: restaurants } = useGetRestaurantsQuery()
 
   if (!restaurants) {
-    return <h3>Carregando...</h3>
+    return <Loader />
   }
   return (
     <>

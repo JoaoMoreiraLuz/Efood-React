@@ -1,18 +1,13 @@
-import {
-  HeaderDiv,
-  HeaderImage,
-  RestaurantDiv,
-  RestaurantTitle,
-  Title
-} from './style'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+import { open } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
+
+import * as S from './style'
+import Banner from '../Banner'
 import headerImage from '../../assets/images/Vector.png'
 import logo from '../../assets/images/logo.svg'
-import Banner from '../Banner'
-import { Link } from 'react-router-dom'
-import { Restaurant } from '../../Pages/Home'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
-import { open } from '../../store/reducers/cart'
 
 type Props = {
   homePage: boolean
@@ -28,30 +23,33 @@ const Header = ({ homePage, restaurantBanner }: Props) => {
   }
 
   return (
-    <HeaderImage style={{ backgroundImage: `url(${headerImage})` }}>
+    <S.HeaderImage style={{ backgroundImage: `url(${headerImage})` }}>
       {homePage ? (
         <>
-          <HeaderDiv>
+          <S.HeaderDiv>
             <img src={logo} alt="EFOOD" />
-            <Title>
+            <S.Title>
               Viva experiências gastronômicas <br /> no conforto da sua casa
-            </Title>
-          </HeaderDiv>
+            </S.Title>
+          </S.HeaderDiv>
         </>
       ) : (
         <>
           <div className="container">
-            <RestaurantDiv>
+            <S.RestaurantDiv>
               <Link to="/">
-                <RestaurantTitle>Restaurantes</RestaurantTitle>
+                <img className="mobileLogo" src={logo} alt="EFOOD" />
+                <S.RestaurantTitle className="mobileTitle">
+                  Restaurantes
+                </S.RestaurantTitle>
               </Link>
               <Link to="/">
                 <img src={logo} alt="EFOOD" />
               </Link>
-              <RestaurantTitle onClick={openCart}>
+              <S.RestaurantTitle onClick={openCart}>
                 {items.length} produto(s) no carrinho
-              </RestaurantTitle>
-            </RestaurantDiv>
+              </S.RestaurantTitle>
+            </S.RestaurantDiv>
           </div>
           <div>
             <Banner
@@ -62,7 +60,7 @@ const Header = ({ homePage, restaurantBanner }: Props) => {
           </div>
         </>
       )}
-    </HeaderImage>
+    </S.HeaderImage>
   )
 }
 
